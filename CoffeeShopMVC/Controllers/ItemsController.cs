@@ -17,5 +17,14 @@ namespace CoffeeShopMVC.Controllers
             var items = _context.Items.ToList();
             return View(items);
         }
+
+        [Route("items/details/{id:int}")]
+        public IActionResult Show(int id)
+        {
+            var item = _context.Items.Find(id);
+            ViewData["PriceInDollars"] = item.PriceInCents / 100;
+
+            return View(item);
+        }
     }
 }
