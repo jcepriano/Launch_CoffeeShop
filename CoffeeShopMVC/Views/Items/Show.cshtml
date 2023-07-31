@@ -4,3 +4,7 @@
 
 <p>Name: @Model.Name</p>
 <p>Price: @ViewData["PriceInDollars"]</p>
+
+<form method="post" action="/items/delete/@Model.Id">
+    <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')">Delete</button>    
+</form>
