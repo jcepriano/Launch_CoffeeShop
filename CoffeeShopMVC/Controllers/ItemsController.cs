@@ -26,5 +26,15 @@ namespace CoffeeShopMVC.Controllers
 
             return View(item);
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var item = _context.Items.Find(id);
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+
+            return Redirect("/items");
+        }
     }
 }
