@@ -1,5 +1,6 @@
 ﻿using CoffeeShopMVC.DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using CoffeeShopMVC.Models;
 
 namespace CoffeeShopMVC.Controllers
 {
@@ -36,5 +37,22 @@ namespace CoffeeShopMVC.Controllers
 
             return Redirect("/items");
         }
+
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(Item item)
+        {
+            _context.Items.Add(item);
+            _context.SaveChanges();
+            var itemId = item.Id;
+
+            return RedirectToAction("show", new {id = itemId});
+
+        }
+
     }
 }
