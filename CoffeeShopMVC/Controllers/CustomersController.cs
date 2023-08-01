@@ -2,6 +2,7 @@
 using CoffeeShopMVC.DataAccess;
 using CoffeeShopMVC.Models;
 
+
 namespace CoffeeShopMVC.Controllers
 {
     public class CustomersController : Controller
@@ -15,8 +16,26 @@ namespace CoffeeShopMVC.Controllers
 
         public IActionResult Index()
         {
+
             var customers = _context.Customers.ToList();
             return View(customers);
+
+        }
+
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            //var customerId = customer.Id;
+
+            return RedirectToAction("index");
         }
     }
 }
