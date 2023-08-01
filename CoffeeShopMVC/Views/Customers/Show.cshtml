@@ -1,0 +1,12 @@
+﻿@model Customer
+@{
+    List<Item> itemList = ViewData["ListOfItems"] as List<Item>;
+}
+<h1>Customer Details</h1>
+<p>Name: @Model.Name</p>
+<p>Total: $@ViewData["TotalOfOrders"]</p>
+
+@foreach(var item in itemList)
+{
+    <p>Name: @item.Name, Price: @item.PriceInCents</p>
+}
