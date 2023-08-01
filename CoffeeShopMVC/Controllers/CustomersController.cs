@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CoffeeShopMVC.DataAccess;
 using CoffeeShopMVC.Models;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Razor.Hosting;
 
 namespace CoffeeShopMVC.Controllers
 {
@@ -36,6 +37,16 @@ namespace CoffeeShopMVC.Controllers
             //var customerId = customer.Id;
 
             return RedirectToAction("index");
+        }
+
+        [Route("customers/details/{id:int}")]
+        public IActionResult Show(int id)
+        {
+            var customer = _context.Customers.Find(id);
+            //list of all items for this customer
+            ViewData["TotalOfOrders"] = customer.OrderTotal();
+            ViewData["ListOfItems"] = customer.ItemList();
+            return View(customer);
         }
     }
 }
