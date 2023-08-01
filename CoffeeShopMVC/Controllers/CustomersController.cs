@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CoffeeShopMVC.Models;
 using CoffeeShopMVC.DataAccess;
+using CoffeeShopMVC.Models;
+
 
 namespace CoffeeShopMVC.Controllers
 {
@@ -15,7 +16,10 @@ namespace CoffeeShopMVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            var customers = _context.Customers.ToList();
+            return View(customers);
+
         }
 
         public IActionResult New()

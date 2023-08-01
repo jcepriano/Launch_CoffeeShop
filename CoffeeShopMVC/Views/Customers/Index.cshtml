@@ -1,0 +1,8 @@
+﻿@model IEnumerable<CoffeeShopMVC.Models.Customer>
+
+<h1>Customers</h1>
+
+@foreach(var customer in @Model)
+{
+    <p>Name: @customer.Name, @customer.Email</p>
+}
