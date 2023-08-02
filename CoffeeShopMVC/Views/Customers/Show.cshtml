@@ -12,4 +12,13 @@
     <p>Name: @item.Name, Price: @item.PriceInCents</p>
 }
 
+
 <footer><a href="/customers/edit/@Model.Id">Update Profile</a></footer>
+
+@if(Model.Orders.Count == 0)
+{
+    <form method="post" action="/customers/delete/@Model.Id" >
+        <button "submit" onclick="return confirm('Are You Sure You Want To Delete @Model.Name?')">Delete</button>
+    </form>
+}
+
