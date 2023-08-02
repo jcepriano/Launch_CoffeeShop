@@ -3,6 +3,7 @@
     List<Item> itemList = ViewData["ListOfItems"] as List<Item>;
 }
 <h1>Customer Details</h1>
+<br />
 <p>Name: @Model.Name</p>
 <p>Total: $@ViewData["TotalOfOrders"]</p>
 
@@ -11,9 +12,13 @@
     <p>Name: @item.Name, Price: @item.PriceInCents</p>
 }
 
+
+<footer><a href="/customers/edit/@Model.Id">Update Profile</a></footer>
+
 @if(Model.Orders.Count == 0)
 {
     <form method="post" action="/customers/delete/@Model.Id" >
         <button "submit" onclick="return confirm('Are You Sure You Want To Delete @Model.Name?')">Delete</button>
     </form>
 }
+

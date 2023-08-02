@@ -1,0 +1,17 @@
+﻿@model Customer
+
+<h1>Edit a Profile</h1>
+
+<form method="post" action="/customers/@Model.Id">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="@Model.Name" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="@Model.Email" />
+    </div>
+    <br />
+    <button type="submit">Update Profile</button>
+</form>
