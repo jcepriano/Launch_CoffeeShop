@@ -48,5 +48,15 @@ namespace CoffeeShopMVC.Controllers
             ViewData["ListOfItems"] = customer.ItemList();
             return View(customer);
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var customer = _context.Customers.Find(id);
+            _context.Customers.Remove(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("index");
+        }
     }
 }
