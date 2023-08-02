@@ -42,9 +42,9 @@ namespace CoffeeShopMVC.Controllers
         [Route("customers/details/{id:int}")]
         public IActionResult Show(int id)
         {
-            var customer = _context.Customers.Find(id);
+            var customer = _context.Customers.Include(c => c.Orders).ThenInclude(o => o.Items).FirstOrDefault(c => c.Id == id);
             //list of all items for this customer
-            ViewData["TotalOfOrders"] = customer.OrderTotal();
+            ViewData["TotalOfOrders"] = string.Format("{0:#.00}", Convert.ToDecimal(customer.OrderTotal()) / 100);
             ViewData["ListOfItems"] = customer.ItemList();
             return View(customer);
         }
@@ -66,7 +66,6 @@ namespace CoffeeShopMVC.Controllers
 
             return RedirectToAction("show", new { id = customer.Id });
         }
-
         [HttpPost]
         public IActionResult Delete(int id)
         {

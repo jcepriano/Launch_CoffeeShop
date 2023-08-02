@@ -24,7 +24,7 @@ namespace CoffeeShopMVC.Controllers
         {
             var item = _context.Items.Find(id);
             //var priceString = item.PriceInCents.ToString();
-            ViewData["PriceInDollars"] = string.Format("{0:#.00}", Convert.ToDecimal(item.PriceInCents) / 100);
+            ViewData["PriceInDollars"] = item.PriceInDollars();
 
             return View(item);
         }
