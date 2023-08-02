@@ -22,6 +22,13 @@ namespace CoffeeShopMVC.Controllers
         {
             return View();
         }
+        
+        [Route("customers/{customerId:int}/orders/{id:int}")]
+        public IActionResult Show(int id)
+        {
+            var order = _context.Orders.Include(o => o.Customer).FirstOrDefault(o => o.Id == id);
+            return View(order);
+        }
 
         [Route("customers/{id:int}/orders/new")]
         public IActionResult New(int id)

@@ -1,0 +1,9 @@
+﻿@model Order
+
+<h1>Order Details</h1>
+@foreach(var item in @Model.Items)
+{
+    <p>Name: @item.Name, Price (in cents): @item.PriceInCents</p>
+}
+
+<a href="/customers/@Model.Customer.Id/orders"></a>
