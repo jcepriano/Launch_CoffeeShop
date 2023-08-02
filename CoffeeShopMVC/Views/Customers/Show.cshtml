@@ -9,7 +9,7 @@
 
 @foreach(var item in itemList)
 {
-    <p>Name: @item.Name, Price: @item.PriceInCents</p>
+    <p>Name: @item.Name, Price: $@item.PriceInDollars()</p>
 }
 
 
